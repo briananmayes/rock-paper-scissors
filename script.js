@@ -4,12 +4,14 @@ container.style.display = 'flex';
 container.style.flexDirection = 'column';
 container.style.justifyContent = 'center';
 container.style.alignItems = 'center';
+container.style.color = 'white';
 //const button = document.querySelector('#rock');
 const h1 = document.createElement('h1');
 h1.textContent = "Rock, Paper, Scissors";
 h1.style.color = 'white';
 h1.style.textAlign = 'center';
 h1.style.margin = '0px';
+h1.style.fontSize = '32px';
 container.appendChild(h1);
 
 /* resolving: TypeError: Failed to execute 'addEventListener' on 'EventTarget': parameter 2 is not of type 'Object'. 
@@ -31,7 +33,7 @@ btnContainer.appendChild(paperBtn);
 
 const scissorBtn = document.createElement('button');
 scissorBtn.textContent = 'Scissors';
-scissorBtn.style.backgroundColor = 'lavender';
+scissorBtn.style.backgroundColor = 'lavenderblush';
 btnContainer.appendChild(scissorBtn);
 
 //const paperBtn = document.querySelector('#paper');
@@ -47,7 +49,13 @@ buttons.forEach((btn) => {
     btn.style.margin = '8px';
     btn.style.border = '1px solid white';
     btn.style.borderRadius = '5px';
-    btn.style.boxShadow = '2px 2px 5px lightgray';
+    btn.style.boxShadow = '2px 2px 5px gray';
+    btn.style.fontSize = '24px';
+    
+    //Adding another 'click' event listener to each button to add a "shake" effect
+    btn.addEventListener('click', () => {btn.classList.add("shake");
+    let delay = setTimeout(() => btn.classList.remove("shake"),300);
+    });
 });
 
 // create the scoreboard
@@ -62,6 +70,9 @@ container.appendChild(scoreboard);
 
 const scoreTitle = document.createElement('h3');
 scoreTitle.textContent = 'Scoreboard';
+scoreTitle.style.fontSize = '24px';
+scoreTitle.style.margin = '0px';
+scoreTitle.style.padding = '8px';
 scoreboard.appendChild(scoreTitle);
 
 const userScore = document.createElement('p');
@@ -69,6 +80,13 @@ scoreboard.appendChild(userScore);
 const cpuScore = document.createElement('p');
 scoreboard.appendChild(cpuScore);
 
+
+const ps = document.querySelectorAll('p');
+ps.forEach((p) => {
+    p.style.fontSize = '20px';
+    p.style.margin = '0px';
+    p.style.padding = '4px';
+});
 /* Rock, Paper, Scissors game with the computer */
 
 function computerPlay() {
@@ -82,6 +100,7 @@ let cS = 0;
 
 function game() {
     const winner = document.createElement('h2');
+    winner.style.color = 'pink';
         if(uS === 5) {
             winner.textContent = `You Win!!!`;
             scoreboard.appendChild(winner);
@@ -96,6 +115,7 @@ const selections = document.createElement('p');
 
 function playRound (userPlay, computerPlay) {
     selections.textContent = `You chose ${userPlay} & the CPU chose ${computerPlay}`;
+    selections.style.fontSize = '20px'
     container.insertBefore(selections, scoreboard);
 
     userPlay = userPlay.toLowerCase()
